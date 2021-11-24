@@ -1,0 +1,3 @@
+[submodule "guacamole-server"]
+	path = guacamole-server
+	url = git@github.com:andras-pinter/guacamole-server.git
