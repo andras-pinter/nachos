@@ -1,0 +1,45 @@
+# Public tasks
+[tasks.check]
+dependencies = ["build-guacamole-server"]
+description = "Check libnachos-sys source integrity"
+
+[tasks.build]
+dependencies = ["build-guacamole-server"]
+description = "Build libnachos-sys"
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.test]
+dependencies = ["build-guacamole-server"]
+description = "Running tests for libnachos-sys"
+
+[tasks.clean]
+description = "Clean up libnachos-sys workspace"
+dependencies = ["clean-dist"]
+
+
+# Private task
+[tasks.build-guacamole-server]
+description = "Build guacamole-server"
+private = true
+condition_script = [
+    "[[ -d \"dist\" ]] && exit 1 || exit 0"
+]
+script = """
+    cd guacamole-server
+    autoreconf -fi
+    ./configure \
+        --disable-guacd \
+        --disable-kubernetes \
+        --disable-guaclog \
+        --disable-guacenc \
+        --prefix="$PWD/../dist"
+    make
+    make install
+    git clean -fxd
+"""
+
+[tasks.clean-dist]
+description = "Clean up libnachos-sys shared resources"
+command = "rm"
+args = ["-rf", "dist"]

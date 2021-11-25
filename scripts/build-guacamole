@@ -1,8 +1,0 @@
-#!/bin/bash
-
-autoreconf -fi &&\
-./configure --disable-guacd --prefix=$PWD/../dist &&\
-make &&\
-make install &&\
-git clean -fxd
-
