@@ -1,3 +1,3 @@
-[submodule "guacamole-server"]
-	path = guacamole-server
+[submodule "libnachos/guacamole-server"]
+	path = libnachos/guacamole-server
 	url = git@github.com:andras-pinter/guacamole-server.git
