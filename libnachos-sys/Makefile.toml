@@ -22,6 +22,7 @@ dependencies = ["clean-dist"]
 [tasks.build-guacamole-server]
 description = "Build guacamole-server"
 private = true
+dependencies = ["git-submodule-sync"]
 condition_script = [
     "[[ -d \"dist\" ]] && exit 1 || exit 0"
 ]
@@ -41,5 +42,12 @@ script = """
 
 [tasks.clean-dist]
 description = "Clean up libnachos-sys shared resources"
+private = true
 command = "rm"
 args = ["-rf", "dist"]
+
+[tasks.git-submodule-sync]
+description = "Update guacamole-server source from remote"
+private = true
+command = "git"
+args = ["submodule", "update"]
