@@ -34,6 +34,7 @@ script = """
         --disable-kubernetes \
         --disable-guaclog \
         --disable-guacenc \
+        --with-freerdp-plugin-dir="$PWD/../dist/freerdp-plugins" \
         --prefix="$PWD/../dist"
     make
     make install
