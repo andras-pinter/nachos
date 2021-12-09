@@ -1,0 +1,24 @@
+extend = "../Makefile.env.toml"
+
+# Public tasks
+[tasks.check]
+description = "Check nachos source integrity"
+
+[tasks.build]
+description = "Build nachos"
+
+[tasks.test]
+description = "Running tests for nachos"
+
+[tasks.clean]
+description = "Clean up nachos workspace"
+
+[tasks.run]
+description = "Run nachos"
+command = "cargo"
+args = ["run"]
+
+[tasks.serve]
+description = "Run nachos"
+command = "cargo"
+args = ["watch", "-x", "run"]

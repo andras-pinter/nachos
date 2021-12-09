@@ -1,17 +1,19 @@
+extend = "../Makefile.env.toml"
+
 # Public tasks
 [tasks.check]
-dependencies = ["build-guacamole-server"]
 description = "Check libguac-sys source integrity"
+dependencies = ["build-guacamole-server"]
 
 [tasks.build]
-dependencies = ["build-guacamole-server"]
 description = "Build libguac-sys"
+dependencies = ["build-guacamole-server"]
 command = "cargo"
 args = ["build", "--release"]
 
 [tasks.test]
-dependencies = ["build-guacamole-server"]
 description = "Running tests for libguac-sys"
+dependencies = ["build-guacamole-server"]
 
 [tasks.clean]
 description = "Clean up libguac-sys workspace"
@@ -50,5 +52,14 @@ args = ["-rf", "dist"]
 [tasks.git-submodule-sync]
 description = "Update guacamole-server source from remote"
 private = true
-command = "git"
-args = ["submodule", "update"]
+condition_script = [
+    "[[ -d \"dist\" ]] && exit 1 || exit 0"
+]
+script = """
+git submodule foreach --recursive git stash clear
+git submodule foreach --recursive git stash
+git submodule update --remote --init
+git submodule foreach --recursive git checkout ${GUACAMOLE_VERSION}
+git submodule foreach --recursive git reset --hard
+git submodule foreach --recursive git stash pop || exit 0
+"""

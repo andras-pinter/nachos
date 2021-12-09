@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "libguac-sys",
+    "libguac",
+    "libnachos",
+    "nachos",
+    "nachos-client",
+]
+default-members = ["nachos"]

@@ -1,0 +1,13 @@
+[tasks.serve-backend]
+workspace = false
+private = true
+dependencies = [
+    { name = "serve", path = "nachos/Makefile.toml" }
+]
+
+[tasks.serve-client]
+workspace = false
+private = true
+dependencies = [
+    { name = "serve", path = "nachos-client/Makefile.toml" }
+]

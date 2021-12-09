@@ -1,4 +1,8 @@
-# Public tasks
+extend = [ { path = "Makefile.private.toml" }, { path = "Makefile.env.toml" }]
+
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+
 [tasks.default]
 clear = true
 dependencies = [
@@ -10,28 +14,33 @@ dependencies = [
 
 [tasks.check]
 description = "Check code integrity"
-clear = true
-dependencies = [
-    { name = "check", path = "libguac-sys/Makefile.toml" }
-]
 
 [tasks.test]
-description = "Check code integrity"
-clear = true
-dependencies = [
-    { name = "test", path = "libguac-sys/Makefile.toml" }
-]
+description = "Run all tests"
 
 [tasks.build]
-description = "Build nachos"
-clear = true
-dependencies = [
-    { name = "build", path = "libguac-sys/Makefile.toml" }
-]
+description = "Build nachos and dependencies"
 
 [tasks.clean]
 description = "Clean up workspace"
-clear = true
+
+[tasks.run-client]
+workspace = false
 dependencies = [
-    { name = "clean", path = "libguac-sys/Makefile.toml" }
+    { name = "run", path = "nachos-client/Makefile.toml" }
 ]
+
+[tasks.run-backend]
+workspace = false
+dependencies = [
+    { name = "build", path = "libguac-sys" },
+    { name = "run", path = "nachos/Makefile.toml" }
+]
+
+[tasks.serve]
+description = "Run nachos"
+workspace = false
+dependencies = [
+    { name = "build", path = "libguac-sys" }
+]
+run_task = { name = ["serve-backend", "serve-client"], fork = true, parallel = true }

@@ -1,0 +1,15 @@
+extend = "../Makefile.env.toml"
+
+# Public tasks
+[tasks.check]
+description = "Check libnachos source integrity"
+
+[tasks.build]
+description = "Build libnachos"
+args = ["build", "--release"]
+
+[tasks.test]
+description = "Running tests for libnachos"
+
+[tasks.clean]
+description = "Clean up libnachos workspace"

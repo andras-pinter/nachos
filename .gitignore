@@ -9,3 +9,9 @@
 
 # guacamole-server compiled and shared files
 libguac-sys/dist
+
+# guacamole-common-js compiled and shared files
+nachos-client/node_modules
+nachos-client/package.json
+nachos-client/package-lock.json
+nachos-client/dist

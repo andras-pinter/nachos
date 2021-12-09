@@ -1,0 +1,43 @@
+# Public tasks
+[tasks.check]
+description = "Check nachos-client source integrity"
+dependencies = ["build-guacamole-common-js"]
+
+[tasks.build]
+description = "Build nachos-client"
+dependencies = ["build-guacamole-common-js"]
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.test]
+description = "Running tests for nachos-client"
+dependencies = ["build-guacamole-common-js"]
+
+[tasks.clean]
+description = "Clean up nachos-client workspace"
+dependencies = ["clean-dist"]
+
+[tasks.serve]
+description = "Run nachos-client application"
+dependencies = ["build-guacamole-common-js"]
+install_crate = { crate_name = "trunk", binary = "trunk", "test_arg" = "--help" }
+command = "trunk"
+args = ["serve", "--open"]
+
+# Private task
+[tasks.build-guacamole-common-js]
+description = "Get guacamole-common-js from npm"
+private = true
+condition_script = [
+    "[[ -d \"node_modules\" ]] && exit 1 || exit 0"
+]
+script = """
+    npm install guacamole-common-js
+    find node_modules -type f -name "guacamole-common*.js" -print0 | xargs -0 sed -E -i '' 's/(,)?module.exports[ ]*=[ ]*Guacamole;//'
+"""
+
+[tasks.clean-dist]
+description = "Clean up libguac-sys shared resources"
+private = true
+command = "rm"
+args = ["-rf", "node_modules", "package.json", "package-lock.json"]

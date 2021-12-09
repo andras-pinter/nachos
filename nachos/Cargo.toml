@@ -1,0 +1,25 @@
+[package]
+name = "nachos"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.libnachos]
+path = "../libnachos"
+
+[dependencies.warp]
+version = "0.3"
+
+[dependencies.tokio]
+version = "1.16"
+features = ["full"]
+
+[dependencies.tokio-stream]
+version = "0.1"
+
+[dependencies.futures]
+version = "0.3"
+
+[dependencies.async-trait]
+version = "0.1"
