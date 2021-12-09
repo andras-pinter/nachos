@@ -10,6 +10,9 @@ fn collect_libguac_headers<P: AsRef<std::path::Path>>(include_path: P) -> impl I
 }
 
 fn main() {
+    println!("cargo:rustc-link-search=native=./dist/lib");
+    println!("cargo:rustc-link-lib=static=guac");
+
     let out_dir = std::path::PathBuf::from(
         std::env::var("OUT_DIR")
             .expect("OUT_DIR not defined")

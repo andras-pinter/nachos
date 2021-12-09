@@ -12,26 +12,26 @@ dependencies = [
 description = "Check code integrity"
 clear = true
 dependencies = [
-    { name = "check", path = "libnachos-sys/Makefile.toml" }
+    { name = "check", path = "libguac-sys/Makefile.toml" }
 ]
 
 [tasks.test]
 description = "Check code integrity"
 clear = true
 dependencies = [
-    { name = "test", path = "libnachos-sys/Makefile.toml" }
+    { name = "test", path = "libguac-sys/Makefile.toml" }
 ]
 
 [tasks.build]
 description = "Build nachos"
 clear = true
 dependencies = [
-    { name = "build", path = "libnachos-sys/Makefile.toml" }
+    { name = "build", path = "libguac-sys/Makefile.toml" }
 ]
 
 [tasks.clean]
 description = "Clean up workspace"
 clear = true
 dependencies = [
-    { name = "clean", path = "libnachos-sys/Makefile.toml" }
+    { name = "clean", path = "libguac-sys/Makefile.toml" }
 ]
