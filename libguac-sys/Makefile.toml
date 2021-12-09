@@ -1,20 +1,20 @@
 # Public tasks
 [tasks.check]
 dependencies = ["build-guacamole-server"]
-description = "Check libnachos-sys source integrity"
+description = "Check libguac-sys source integrity"
 
 [tasks.build]
 dependencies = ["build-guacamole-server"]
-description = "Build libnachos-sys"
+description = "Build libguac-sys"
 command = "cargo"
 args = ["build", "--release"]
 
 [tasks.test]
 dependencies = ["build-guacamole-server"]
-description = "Running tests for libnachos-sys"
+description = "Running tests for libguac-sys"
 
 [tasks.clean]
-description = "Clean up libnachos-sys workspace"
+description = "Clean up libguac-sys workspace"
 dependencies = ["clean-dist"]
 
 
@@ -42,7 +42,7 @@ script = """
 """
 
 [tasks.clean-dist]
-description = "Clean up libnachos-sys shared resources"
+description = "Clean up libguac-sys shared resources"
 private = true
 command = "rm"
 args = ["-rf", "dist"]

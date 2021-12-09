@@ -8,4 +8,4 @@
 **/*.rs.bk
 
 # guacamole-server compiled and shared files
-libnachos-sys/dist
+libguac-sys/dist
