@@ -1,0 +1,10 @@
+extend = [ { path = "Makefile.priv.toml" } ]
+
+[tasks.serve]
+workspace = false
+run_task = { name = ["serve-client", "serve-backend"], parallel = true, fork = true }
+
+[tasks.server]
+workspace = false
+dependencies = [ { name = "build", path = "nachos-client/Makefile.toml" } ]
+run_task = { name = ["serve-backend"] }

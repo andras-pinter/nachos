@@ -1,0 +1,4 @@
+[tasks.serve]
+install_crate = "cargo-watch"
+command = "cargo"
+args = ["watch", "--features", "testConnections", "-x", "run"]

@@ -1,5 +1,11 @@
 .idea/
 
-/target/
-Cargo.lock
+**/target/
+**/Cargo.lock
 **/*.rs.bk
+
+**/dist
+**/node_modules
+**/package-lock.json
+**/index.test.html
+nachos/client

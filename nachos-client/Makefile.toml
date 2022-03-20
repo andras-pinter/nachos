@@ -1,0 +1,45 @@
+[tasks.build]
+dependencies = ["build-deps"]
+install_crate = { crate_name = "trunk", binary = "trunk", "test_arg" = "--help" }
+command = "trunk"
+args = ["build"]
+
+[tasks.check]
+dependencies = ["build-deps"]
+
+[tasks.serve]
+env = { TRUNK_BUILD_TARGET = "index.test.html", NACHOS_WS_SERVER = "ws://localhost:8000" }
+dependencies = ["create-index-test-html", "build-deps"]
+install_crate = { crate_name = "trunk", binary = "trunk", "test_arg" = "--help" }
+command = "trunk"
+args = ["serve", "--open"]
+
+[tasks.clean]
+dependencies = ["clean-index-test-html", "clean-xterm-js"]
+command = "trunk"
+args = ["clean"]
+
+[tasks.create-index-test-html]
+private = true
+script = """
+    cp index.html index.test.html
+    echo '<link data-trunk rel="rust" data-cargo-features="testConnections"/>' >> index.test.html
+"""
+
+[tasks.build-deps]
+private = true
+condition_script = [
+    "[[ -d \"node_modules\" ]] && exit 1 || exit 0"
+]
+script = "npm install"
+
+[tasks.clean-index-test-html]
+private = true
+script = "rm -f index.test.html"
+
+[tasks.clean-xterm-js]
+private = true
+script = """
+    rm -rf node_modules
+    rm -rf package-lock.json
+"""

@@ -1,0 +1,46 @@
+[package]
+name = "nachos-client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = []
+testConnections = []
+
+[dependencies.common]
+path = "../common"
+
+[dependencies.yew]
+version = "0.19"
+
+[dependencies.yew-router]
+version = "0.16"
+
+[dependencies.gloo-net]
+version = "0.1"
+
+[dependencies.gloo-console]
+version = "0.2"
+
+[dependencies.gloo-utils]
+version = "0.1"
+
+[dependencies.futures]
+version = "0.3"
+
+[dependencies.wasm-bindgen]
+version = "0.2"
+
+[dependencies.wasm-bindgen-futures]
+version = "0.4"
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+    "Window",
+    "Document",
+    "Element",
+    "CssStyleDeclaration",
+]

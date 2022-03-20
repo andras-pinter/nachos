@@ -1,0 +1,9 @@
+[build]
+target = "index.html"
+dist = "../nachos/client"
+
+[clean]
+dist = "../nachos/client"
+
+[[proxy]]
+backend = "http://localhost:8000/api/"
