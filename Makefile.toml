@@ -1,0 +1,4 @@
+[tasks.serve]
+workspace = false
+command = "cargo"
+args = ["run", "--bin", "nachos"]

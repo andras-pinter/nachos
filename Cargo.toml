@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "libnachos",
+    "nachos",
+    "ssh/handler",
+    "ssh/client",
+]

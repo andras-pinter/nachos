@@ -1,0 +1,57 @@
+### Plan API calls are not allowed
+GET http://0.0.0.0:8080/api
+
+> {%
+client.test("plain api calls are not allowed", function () {
+    client.assert(response.status === 403, "Api calls should not be allowed");
+});
+%}
+### Set up a new connection
+POST http://0.0.0.0:8080/api/connection
+Content-Type: application/json
+
+{
+  "protocol": "ssh",
+  "hostname": "10.0.1.8",
+  "port": 22
+}
+
+> {%
+client.test("setting up a new connection", function () {
+    client.assert(response.status === 200, "Failed setting up a new connection");
+});
+%}
+### Querying connections should not allowed
+GET http://0.0.0.0:8080/api/connection
+
+> {%
+client.test("querying connections", function () {
+    client.assert(response.status === 405, "Querying connections should not be allowed");
+});
+%}
+### Non existent API calls should not be found
+POST http://0.0.0.0:8080/api/test
+
+> {%
+client.test("calling non existent api endpoint", function () {
+    client.assert(response.status === 404, "A non existent API endpoint should not be found");
+});
+%}
+
+### Non existent API queries should not be allowed
+GET http://0.0.0.0:8080/api/test
+
+> {%
+client.test("querying non existent api endpoint", function () {
+    client.assert(response.status === 405, "Querying a non existent API endpoint should not be allowed");
+});
+%}
+
+### Non existent Endpoint calls should not be found
+GET http://0.0.0.0:8080/test
+
+> {%
+client.test("calling non existent endpoint", function () {
+    client.assert(response.status === 404, "A non existent endpoint should not be found");
+});
+%}
